@@ -11,9 +11,13 @@
         <link rel="stylesheet" href="bootstrap\css\bootstrap-responsive.css" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+<link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' />
         <style>
             body{
                 padding-top:15px;
+                background-color: darkslategray;
             }
             h2{
                 text-align:center;
@@ -22,26 +26,52 @@
             {
                 border: 10px solid black;
                 background-color:lightblue;
-                width:50%;
+                width:30%;
                 display:none;
-            }
-            form{
-                padding:10px;
             }
             nav
             {
-                padding-right:130px;
+                padding-right:px;
             }
             #add{
                 border-radius:40px;
             }
-            table{
-                text-align: center;
+            table tr,th {
+                border: 3px solid black;
+                border-color: black;
+
+            }
+            tr,td{
+                border: 2px solid black;
+                border-color: black;
+                border-top-color: lightblue;
             }
             #deleteModel
             {
                 display:none;
             }
+            input[type="text"]{
+                height:40px;
+            }
+           
+            #ta
+            {
+                border: 2px solid black;
+                border-radius: 10px;
+                margin-top: 15px;
+                background-color:lightblue;
+            }
+            .row{
+                padding-top:15px;
+            }
+            #MyPopup
+            {
+                display:none;
+                width:60%;
+                height:80%;
+                margin-left:25%;
+            }
+
         </style>
     <script>
         function myfunction()
@@ -49,19 +79,7 @@
     var fname=uservalue.fname.value;
     var lname=uservalue.lname.value;
     var mail=uservalue.email.value;
-    jQuery.ajax({
-        url: "https://reqres.in/api/users",
-        type: "POST",
-        data: {
-           first_name: fname,
-           last_name:lname,
-           
-           email:mail
-        },
-        success: function(response){
-            console.log(response);
-        }
-    });
+    
 
 }
     </script>
@@ -70,18 +88,19 @@
     <body>
             <script  src="main.js "></script>
         <div class="container">
+        <div class="container" id="ta">
             <div id="table">
                 <div class="row"></div>
                     <h3 class="col-sm-4" >User List</h3>
                     <button id="add" class="pull-right btn btn-primary"> <span class="glyphicon">&#x2b;</span>Add New </button>
                 </div>
-            <table class="table table-bordered table-striped" id="usertable">
+            <table class="table" id="usertable">
                 <thead>
                     <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email Address</th>
-                    <th scope="col">Avatar</th>
-                    <th scope="col">Actions</th>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">Email Address</th>
+                    <th style="text-align:center">Avatar</th>
+                    <th style="text-align:center">Actions</th>
                 </tr>
                 </thead>
                 <tbody></tbody>
@@ -89,47 +108,52 @@
         </div>
         <div class="container" id="pagination">
         <nav id="page">
-        <ul class="pagination pull-right">
-                <li><a href="#" onclick="btnclick(pagepointer-1)"id="btn0"><span class="icon-chevron-left"></span></a></li>
-                <li><a href="#" class="active" onclick="btnclick(1)" value=1 id="btn1">1</a></li>
-                <li><a href="#" onclick="btnclick(2)" value=2 id="btn2">2</a></li>
-                <li><a href="#"  onclick="btnclick(3)" value=3 id="btn3">3</a></li>
-                <li><a href="#"  onclick="btnclick(4)" value=4 id="btn4">4</a></li>
-                <li><a href="#" onclick="btnclick(pagepointer+1)" id="btn5"><span class="icon-chevron-right"></span></a></li>
+            <ul class="pagination pull-right">
+                <li class="page-item">
+                  <a class="page-item" href="#" onclick="btnclick(pagepointer-1)" >Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" onclick="btnclick(1)" href="#">1</a></li>
+                <li class="page-item ">
+                  <a class="page-link" onclick="btnclick(2)" href="#">2 </a>
+                </li>
+                <li class="page-item"><a class="page-link" onclick="btnclick(3)" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" onclick="btnclick(4)" href="#">4</a></li>
+                <li class="page-item">
+                  <a class="page-link" onclick="btnclick(pagepointer+1)" href="#">Next</a>
+                </li>
               </ul>
             </nav>
         </div>
-        <div id="userform"  class="container" class="form-group"> 
-            <h2>User Detail</h2>
-            <form action="#"  class="form"  onsubmit="myfunction()" name="uservalue">
-              <label>First Name :</label> 
-             <input class="input-xlarge" type="text" name="fname" placeholder="Firstname"><br>
-            <label>Last name :</label>
-            <input class="input-xlarge" type="text" name="lname" placeholder="Lastname"><br>
-            <label>Email:</label>
-            &emsp; &emsp; <input class="input-xlarge" type="text" name="email" placeholder="Email"> <br>
-            &emsp; &emsp; &emsp; &emsp; &emsp; <input type="submit" class="btn btn-primary" name="submit"></center>  
-            </form>
-
+       
+        <div id="MyPopup" class="modal fade container-fluid" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;</button>
+                        <h4 class="modal-title">
+                    User Detail
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                            <form action="#"  class=" model-content animate form"  onsubmit="myfunction()" name="uservalue">
+                                    <label>First Name :</label> <br>
+                                   <input class="input-xlarge" type="text" id="f" name="fname" placeholder="Firstname"><br>
+                                  <label>Last name :</label> <br>
+                                  <input class="input-xlarge" type="text" id="l" name="lname" placeholder="Lastname"><br>
+                                  <label>Email:</label><br>
+                                   <input class="input-xlarge" type="text" id="e" name="email" placeholder="Email"> <br>
+                                  </form>
+                    </div>
+                    <div class="modal-footer">
+                         <input type="submit" id="sub" class="btn btn-primary" name="submit">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
-       <div class="modal" tabindex="-1" role="dialog" id="Modal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-    </div>
+   
+</div>
     </body> 
 </html>
