@@ -67,23 +67,19 @@
             #MyPopup
             {
                 display:none;
-                width:60%;
-                height:80%;
+                width:fit-content;
+                height:fit-content;
+                margin-left:25%;
+            }
+            #myModal
+            {
+                display:none;
+                width:fit-content;
+                height:fit-content;
                 margin-left:25%;
             }
 
-        </style>
-    <script>
-        function myfunction()
-{
-    var fname=uservalue.fname.value;
-    var lname=uservalue.lname.value;
-    var mail=uservalue.email.value;
-    
-
-}
-    </script>
-   
+        </style>  
     </head>
     <body>
             <script  src="main.js "></script>
@@ -126,7 +122,6 @@
         </div>
        
         <div id="MyPopup" class="modal fade container-fluid" role="dialog">
-            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">
@@ -150,9 +145,26 @@
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Close</button>
                     </div>
-                </div>
             </div>
         </div>
+        <div class="modal fade container-fluid" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                  <h2 style="text-align: left">Are you sure to delete </h2>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="delete" class="btn btn-primary" data-dismiss="modal">Delete</button>
+                  <button type="button" id="cancel"class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
    
 </div>
     </body> 
