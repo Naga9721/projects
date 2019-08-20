@@ -2,13 +2,14 @@
 var pagepointer=0;
 jQuery(document).ready(function(){
     btnclick(1);
-   
+
 });
 $(document).on('click', '.delete', function () {
     $("#myModal").appendTo('body');
     $("#myModal").modal("show");
+    var del=   $(".delete").closest('tr');
     $(document).on('click','#delete',function(){
-        $(".delete").closest('tr').remove();
+        del.remove();
         return false;
         })
         $(document).on('click','#cancel',function(){
